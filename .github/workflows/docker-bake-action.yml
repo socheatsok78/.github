@@ -19,9 +19,6 @@ on:
       DOCKERHUB_TOKEN:
         description: "The login token for docker.io"
         required: false
-      GITHUB_TOKEN:
-        description: "The login token for ghcr.io"
-        required: true
 
 jobs:
   build:
