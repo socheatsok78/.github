@@ -11,14 +11,10 @@ on:
       tags:
         type: string
         required: true
-      env:
-        type: string
-        required: false
     secrets:
       DOCKERHUB_TOKEN:
         description: "The login token for docker.io"
         required: false
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -71,7 +67,6 @@ jobs:
 
       - name: Build and push
         uses: docker/bake-action@v4
-        env: ${{ github.event.inputs.env }}
         with:
           push: ${{ github.event_name != 'pull_request' }}
           files: |
