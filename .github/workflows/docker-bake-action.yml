@@ -5,16 +5,15 @@ on:
     inputs:
       images:
         type: string
-        description: "List of images to build"
         required: true
-        default: "alpine:3.14"
       flavor:
         type: string
-        description: "Flavor of the images"
       tags:
         type: string
-        description: "Tags for the images"
         required: true
+      env:
+        type: string
+        required: false
     secrets:
       DOCKERHUB_TOKEN:
         description: "The login token for docker.io"
@@ -61,8 +60,6 @@ jobs:
       - name: Generate Docker metadata
         id: docker-meta
         uses: docker/metadata-action@v5
-        env:
-          ALPINE_VERSION: ${{ matrix.alpine }}
         with:
           images: ${{ github.event.inputs.images }}
           flavor: ${{ github.event.inputs.flavor }}
@@ -74,6 +71,7 @@ jobs:
 
       - name: Build and push
         uses: docker/bake-action@v4
+        env: ${{ github.event.inputs.env }}
         with:
           push: ${{ github.event_name != 'pull_request' }}
           files: |
