@@ -15,6 +15,9 @@ on:
         type: string
         description: "Tags for the images"
         required: true
+    secrets:
+      - DOCKERHUB_TOKEN
+      - GITHUB_TOKEN
 
 jobs:
   build:
