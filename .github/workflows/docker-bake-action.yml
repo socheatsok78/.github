@@ -53,7 +53,7 @@ jobs:
           ALPINE_VERSION: ${{ matrix.alpine }}
         with:
           images: ${{ github.event.inputs.images }}
-          flavor: ${{ github.event.inputs.flavor | omit }}
+          flavor: ${{ github.event.inputs.flavor }}
           tags: ${{ github.event.inputs.tags }}
 
       - name: Generate GitHub metadata
