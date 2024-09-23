@@ -16,8 +16,12 @@ on:
         description: "Tags for the images"
         required: true
     secrets:
-      - DOCKERHUB_TOKEN
-      - GITHUB_TOKEN
+      DOCKERHUB_TOKEN:
+        description: "The login token for docker.io"
+        required: false
+      GITHUB_TOKEN:
+        description: "The login token for ghcr.io"
+        required: true
 
 jobs:
   build:
